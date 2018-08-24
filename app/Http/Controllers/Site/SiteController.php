@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use \Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use App\Models\Noticias;
+use App\Models\Contato;
+use Mail;
+
 class SiteController extends Controller
 {
     /**
@@ -116,6 +119,37 @@ class SiteController extends Controller
         $pag = "Contato";
         return view('site.home.contato',compact('pag',$pag));
     }
+    
+    public function storeContato(Request $request){
+        
+        $contato = new Contato;
+        $contato->nome = $request->cf_name;
+        $contato->email = $request->cf_email;
+        $contato->assunto = $request->cf_subject;
+        $contato->mensagem = $request->cf_message;
+        $contato->dataMensagem = Input::get('data');
+        $contato->save();
+        
+        $data = array(
+            'nome' => $request->cf_name,
+            'email' => $request->cf_email,
+            'mensagem' => $request->cf_message,
+            'assunto' => $request->cf_subject,
+        );
+        
+        Mail::send('site.contato.email', $data, function($message)  use ($data){
+            
+            $message->from($data['email'],$data['nome']);
+            $message->to('desenvolverdor.ideias@gmail.com')->subject('Contato - '.$data['assunto']);
+            
+        });
+            
+            \Session::flash('message', 'Cadastrado com sucesso!');
+            
+            $pag = "Contato";
+            return view('site.home.contato',compact('pag',$pag));
+    }
+    
     //PAGINA DO NOSSO ALBERGUE
     public function albergue() {
         $pag="Nosso Albergue";

@@ -60,7 +60,9 @@
                                 <div class="col-lg-8 col-md-8 col-sm-8 m_xs_bottom_30">
                                     <h3 class="tt_uppercase color_dark m_bottom_25">Formulário</h3>
                                     <p class="m_bottom_10">Preencha Todos os Campos com <span class="scheme_color">*</span>.</p>
-                                    <form id="contactform">
+                                    <form  action="{{ url('contato')}}" method="post" enctype="multipart/form-data" class="bs_inner_offsets full_width bg_light_color_3 r_corners shadow m_xs_bottom_30">
+										{!! csrf_field() !!}
+					 					<input name="data" type="hidden" class="form-control" id="create_data" value="<?= date('y-m-d H:i:s') ?>">
                                         <ul>
                                             <li class="clearfix m_bottom_15">
                                                 <div class="f_left half_column">
@@ -78,7 +80,7 @@
                                             </li>
                                             <li class="m_bottom_15">
                                                 <label for="cf_message" class="d_inline_b m_bottom_5 required">Messagem</label>
-                                                <textarea id="cf_message" name="cf_message" class="full_width r_corners"></textarea>
+                                                <textarea id="cf_message" name="cf_message" class="full_width r_corners" required="true"></textarea>
                                             </li>
                                             <li>
                                                 <button class="button_type_4 bg_light_color_2 r_corners mw_0 tr_all_hover color_dark">Enviar</button>

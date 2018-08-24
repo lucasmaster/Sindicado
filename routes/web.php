@@ -45,6 +45,8 @@ Route::group(['namespace'=>'Site'], function(){
     Route::post('buscarSocio','AssociadoController@buscarDados');
     
     Route::get('contato','SiteController@contato');
+    Route::post('contato','SiteController@storeContato');
+
     //post = noticias
     Route::get('noticias','NoticiasController@geral');
     Route::get('noticias-nacionais','NoticiasController@nacionais');
@@ -302,6 +304,10 @@ Route::group(['namespace'=>'Site'], function(){
         Route::post('/auditorios/atualizar/{id}','AuditorioController@update');
         Route::get('/auditorios/excluir/{id}', 'AuditorioController@destroy');
         Route::get('/auditorios/{id}', 'AuditorioController@mudarStatus');
+        
+        // Contato
+        Route::get('/contato','ContatoController@indexContato');
+        Route::get('/deletar_contato/{id}', 'ContatoController@destroyContato');
         
     });
         //Route::get('/home', 'HomeController@index');

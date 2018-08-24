@@ -130,6 +130,7 @@
                                             <li><a href="{{url('/admin/assedios') }}">Assédios</a></li>
                                             <li><a href="{{url('/admin/convenio') }}">Convênios</a></li>
                                             <li><a href="{{url('/admin/ouvidoria') }}">Ouvidoria</a></li>
+                                            <li><a href="{{url('/admin/contato') }}">Contatos</a></li>
                                             <li><a href="{{url('/admin/seguranca-bancaria') }}">Segurança Bancária</a></li>
                                         </ul>
                                     </li>
